@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'fr.endwiz.drp'
-version 'snapshot0.1.4'
+version ''
 
 repositories {
     mavenCentral()

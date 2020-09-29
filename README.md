@@ -1,35 +1,42 @@
-# Discord-Rich-Presence-Manager
+# Discord Rich-Presence Manager
 
 Discord Rich-Presence Manager is a software to easily create personalized status
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
 ```
-Discord (https://discord.com/download)
 Java 8 or higher (https://www.java.com/fr/download/)
+Discord (https://discord.com/download)
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Download the jar then launch it
 
 ```
-Give the example
+Step 1
 ```
-
-And repeat
+Create a new app on https://discord.com/developers
 
 ```
-until finished
+Step 2
 ```
+Add Rich presence on app
 
-End with an example of getting some data out of the system or using it for a little demo
+```
+Step 3
+```
+Enter bot ID on Discord Rich-Presence Manager
+
+```
+Step 4
+```
+Fill in the other fields if you want
+
+```
+Step 5
+```
+Click on "Launch!"
 
 ## Running the tests
 

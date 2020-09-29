@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'fr.endwiz.drp'
+version 'snapshot0.1.4'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fr.endwiz.drp.Main'
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}

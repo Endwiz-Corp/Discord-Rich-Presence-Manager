@@ -25,16 +25,15 @@ Add Rich presence on app
 # Step 4
 ```
 Enter bot ID on Discord Rich-Presence Manager
-
 ```
 # Step 5
 ```
 Fill in the other fields if you want
-
 ```
 # Step 6
 ```
 Click on "Launch!"
+```
 
 ## Running the tests
 

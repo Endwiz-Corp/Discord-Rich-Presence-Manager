@@ -10,31 +10,29 @@ Discord (https://discord.com/download)
 ```
 
 ### Installing
-
-Download the jar then launch it
-
+# Step 1
 ```
-Step 1
+Download the jar then launch it
+```
+# Step 2
 ```
 Create a new app on https://discord.com/developers
-
 ```
-Step 2
+# Step 3
 ```
 Add Rich presence on app
-
 ```
-Step 3
+# Step 4
 ```
 Enter bot ID on Discord Rich-Presence Manager
 
 ```
-Step 4
+# Step 5
 ```
 Fill in the other fields if you want
 
 ```
-Step 5
+# Step 6
 ```
 Click on "Launch!"
 

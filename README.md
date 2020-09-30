@@ -14,6 +14,8 @@ Discord (https://discord.com/download)
 ```
 Download the jar then launch it
 ```
+* [Discord-RP-Manager.jar](https://github.com/Endwiz/Discord-Rich-Presence-Manager/blob/master/Discord-RP-Manager.jar)
+
 # Step 2
 ```
 Create a new app on https://discord.com/developers

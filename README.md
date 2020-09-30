@@ -14,7 +14,7 @@ Discord (https://discord.com/download)
 ```
 Download the jar then launch it
 ```
-* [Discord-RP-Manager.jar](https://github.com/Endwiz/Discord-Rich-Presence-Manager/blob/master/Discord-RP-Manager.jar)
+* [Discord-RP-Manager.jar](https://raw.githubusercontent.com/Endwiz/Discord-Rich-Presence-Manager/master/Discord-RP-Manager.jar?token=AK65XQEDL3JBMUHJTHXVKYC7OQPWO)
 
 # Step 2
 ```

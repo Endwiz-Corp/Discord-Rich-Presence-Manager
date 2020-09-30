@@ -10,6 +10,4 @@ public interface IPanel {
     GridPane getLayout();
 
     void onShow();
-
-    void onShowTransition();
 }

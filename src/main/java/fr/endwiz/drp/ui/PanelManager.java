@@ -13,13 +13,13 @@ import javafx.stage.Stage;
 
 public class PanelManager {
 
-    private final DiscordRichPresenceManager konamiaLauncher;
+    private final DiscordRichPresenceManager DRPManager;
     private final Stage stage;
     private GridPane layout;
     private GridPane centerPanel = new GridPane();
 
-    public PanelManager(DiscordRichPresenceManager konamiaLauncher, Stage stage) {
-        this.konamiaLauncher = konamiaLauncher;
+    public PanelManager(DiscordRichPresenceManager DRPManager, Stage stage) {
+        this.DRPManager = DRPManager;
         this.stage = stage;
     }
 
@@ -57,8 +57,8 @@ public class PanelManager {
     public Stage getStage() {
         return stage;
     }
-    public DiscordRichPresenceManager getKonamiaLauncher() {
-        return konamiaLauncher;
+    public DiscordRichPresenceManager getDRPManager() {
+        return DRPManager;
     }
     public GridPane getLayout() {
         return this.centerPanel;

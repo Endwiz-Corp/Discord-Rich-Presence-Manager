@@ -31,13 +31,4 @@ public class Panel implements IPanel {
         transition.setAutoReverse(true);
         transition.play();
     }
-
-    @Override
-    public void onShowTransition() {
-        FadeTransition transition = new FadeTransition(Duration.seconds(0.6d), this.layout);
-        transition.setFromValue(0);
-        transition.setToValue(1);
-        transition.setAutoReverse(true);
-        transition.play();
-    }
 }

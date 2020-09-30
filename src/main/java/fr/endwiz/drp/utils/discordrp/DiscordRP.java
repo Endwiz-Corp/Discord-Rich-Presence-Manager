@@ -1,6 +1,5 @@
 package fr.endwiz.drp.utils.discordrp;
 
-
 import fr.endwiz.drp.Main;
 import fr.endwiz.drp.ui.panels.MainPanel;
 import net.arikia.dev.drpc.DiscordEventHandlers;

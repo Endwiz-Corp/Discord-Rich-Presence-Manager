@@ -1,7 +1,6 @@
 package fr.endwiz.drp.utils.discordrp;
 
 import fr.endwiz.drp.Main;
-import fr.endwiz.drp.ui.panels.MainPanel;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
@@ -15,16 +14,14 @@ public class DiscordRP {
     public static boolean isRunning() {
         return running;
     }
-
     public static void setRunning(boolean run) {
         running = run;
     }
 
+
     public void start(String ClientId) {
         setRunning(true);
-        if (MainPanel.haveTimer()) {
-            this.created = System.currentTimeMillis();
-        }
+        this.created = System.currentTimeMillis();
         DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback() {
             @Override
             public void apply(DiscordUser discordUser) {
@@ -51,12 +48,14 @@ public class DiscordRP {
         DiscordRPC.discordShutdown();
     }
 
-    public void update(String details, String state, String BigImage, String BigImageText, String SmallImage, String SmallImageText) {
+    public void update(boolean timer, String details, String state, String BigImage, String BigImageText, String SmallImage, String SmallImageText) {
         DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(state);
         b.setBigImage(BigImage, BigImageText);
         b.setSmallImage(SmallImage, SmallImageText);
         b.setDetails(details);
-        b.setStartTimestamps(created);
+        if (timer) {
+            b.setStartTimestamps(created);
+        }
 
         DiscordRPC.discordUpdatePresence(b.build());
     }

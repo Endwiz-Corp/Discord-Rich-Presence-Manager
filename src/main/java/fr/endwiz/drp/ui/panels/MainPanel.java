@@ -1,10 +1,16 @@
 package fr.endwiz.drp.ui.panels;
 
+import com.jfoenix.animation.alert.JFXAlertAnimation;
+import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXToggleButton;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import fr.endwiz.drp.DiscordRichPresenceManager;
 import fr.endwiz.drp.Main;
 import fr.endwiz.drp.ui.PanelManager;
+import fr.endwiz.drp.ui.panel.Panel;
 import fr.endwiz.drp.utils.discordrp.DiscordRP;
 import fr.endwiz.drp.utils.discordrp.DiscordRPC;
 import javafx.geometry.HPos;
@@ -14,10 +20,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 
-public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
-
+public class MainPanel extends Panel {
     public static String ID;
     public static String Details;
     public static String State;
@@ -26,12 +33,10 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String Small;
     public static String SmallText;
     public static boolean Timer = false;
-    public static boolean canClose = false;
 
     public static String getID() {
         return ID;
     }
-
     public static void setID(String id) {
         ID = id;
     }
@@ -39,7 +44,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static boolean haveTimer() {
         return Timer;
     }
-
     public static void setTimer(Boolean timer) {
         Timer = timer;
     }
@@ -47,7 +51,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getDetails() {
         return Details;
     }
-
     public static void setDetails(String details) {
         Details = details;
     }
@@ -55,7 +58,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getState() {
         return State;
     }
-
     public static void setState(String state) {
         State = state;
     }
@@ -63,7 +65,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getBig() {
         return Big;
     }
-
     public static void setBig(String big) {
         Big = big;
     }
@@ -71,7 +72,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getBigText() {
         return BigText;
     }
-
     public static void setBigText(String bigText) {
         BigText = bigText;
     }
@@ -79,7 +79,6 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getSmall() {
         return Small;
     }
-
     public static void setSmall(String small) {
         Small = small;
     }
@@ -87,17 +86,8 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
     public static String getSmallText() {
         return SmallText;
     }
-
     public static void setSmallText(String smallText) {
         SmallText = smallText;
-    }
-
-    public static boolean CanClose() {
-        return canClose;
-    }
-
-    public static void setCanClose(boolean canClose) {
-        MainPanel.canClose = canClose;
     }
 
     @Override
@@ -123,7 +113,7 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
         Id.setTranslateX(15);
         Id.setTranslateY(-30);
 
-        TextField IdField = new TextField();
+        TextField IdField = new TextField("760153908156563487");
         GridPane.setVgrow(IdField, Priority.ALWAYS);
         GridPane.setHgrow(IdField, Priority.ALWAYS);
         GridPane.setValignment(IdField, VPos.TOP);
@@ -269,44 +259,35 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
         JFXToggleButton timer = new JFXToggleButton();
         GridPane.setVgrow(timer, Priority.ALWAYS);
         GridPane.setHgrow(timer, Priority.ALWAYS);
-        GridPane.setValignment(timer, VPos.TOP);
-        GridPane.setHalignment(timer, HPos.LEFT);
+        GridPane.setValignment(timer, VPos.CENTER);
+        GridPane.setHalignment(timer, HPos.CENTER);
         timer.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
         timer.setToggleLineColor(Paint.valueOf("c8872f"));
         timer.setToggleColor(Paint.valueOf("c8652f"));
-        timer.setTranslateX(15);
-        timer.setTranslateY(335);
+        timer.setTranslateY(90);
+        timer.setTranslateX(-3);
         timer.setText("Timer");
         timer.setOnMouseClicked(e -> setTimer(!haveTimer()));
 
-        JFXToggleButton close = new JFXToggleButton();
-        GridPane.setVgrow(close, Priority.ALWAYS);
-        GridPane.setHgrow(close, Priority.ALWAYS);
-        GridPane.setValignment(close, VPos.TOP);
-        GridPane.setHalignment(close, HPos.LEFT);
-        close.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-        close.setToggleLineColor(Paint.valueOf("c8872f"));
-        close.setToggleColor(Paint.valueOf("c8652f"));
-        close.setTranslateX(200);
-        close.setTranslateY(335);
-        close.setText("Close");
-        close.setOnMouseClicked(e -> setCanClose(!CanClose()));
-
         JFXButton start = new JFXButton("Launch!");
         GridPane.setValignment(start, VPos.BOTTOM);
-        GridPane.setHalignment(start, HPos.CENTER);
+        GridPane.setHalignment(start, HPos.LEFT);
         GridPane.setHgrow(start, Priority.ALWAYS);
         GridPane.setVgrow(start, Priority.ALWAYS);
-        start.setPrefSize(200.0D, 50.0D);
-        start.setMinSize(200.0D, 50.0D);
-        start.setMaxSize(200.0D, 50.0D);
-        start.setTranslateY(-70);
+        start.setPrefSize(100.0D, 50.0D);
+        start.setMinSize(100.0D, 50.0D);
+        start.setMaxSize(100.0D, 50.0D);
+        start.setTranslateY(-110);
+        start.setTranslateX(70);
         start.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #fff; -fx-border-color: #2a46dd");
         start.setOnMouseClicked((e) -> {
             setID(IdField.getText());
             System.out.println("");
             System.out.println("");
             if (!DiscordRP.isRunning()) {
+                DiscordRPC.getInstance().init(getID());
+            } else if (!DiscordRPC.getClientID().equalsIgnoreCase(getID())) {
+                DiscordRPC.getInstance().shutDown();
                 DiscordRPC.getInstance().init(getID());
             } else {
                 Main.logger.log("Discord Rich Presence is already started!");
@@ -335,12 +316,32 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
 
             Main.logger.log("Timer: " + haveTimer());
 
-            Main.logger.log("Close: " + CanClose());
-
-            DiscordRPC.getInstance().getDiscordRP().update(getDetails(), getState(), getBig(), getBigText(), getSmall(), getSmallText());
+            DiscordRPC.getInstance().getDiscordRP().update(haveTimer(), getDetails(), getState(), getBig(), getBigText(),
+                    getSmall(), getSmallText());
         });
         start.setOnMouseEntered((e) -> panelManager.getLayout().setCursor(Cursor.HAND));
         start.setOnMouseExited((e) -> panelManager.getLayout().setCursor(Cursor.DEFAULT));
+
+        JFXButton stop = new JFXButton("Stop!");
+        GridPane.setValignment(stop, VPos.BOTTOM);
+        GridPane.setHalignment(stop, HPos.RIGHT);
+        GridPane.setHgrow(stop, Priority.ALWAYS);
+        GridPane.setVgrow(stop, Priority.ALWAYS);
+        stop.setPrefSize(100.0D, 50.0D);
+        stop.setMinSize(100.0D, 50.0D);
+        stop.setMaxSize(100.0D, 50.0D);
+        stop.setTranslateY(-110);
+        stop.setTranslateX(-80);
+        stop.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #fff; -fx-border-color: #2a46dd");
+        stop.setOnMouseClicked((e) -> {
+            if (DiscordRP.isRunning()) {
+                DiscordRPC.getInstance().shutDown();
+                Main.logger.log("");
+                setTimer(false);
+            }
+        });
+        stop.setOnMouseEntered((e) -> panelManager.getLayout().setCursor(Cursor.HAND));
+        stop.setOnMouseExited((e) -> panelManager.getLayout().setCursor(Cursor.DEFAULT));
 
         Label help = new Label("Need help?");
         GridPane.setVgrow(help, Priority.ALWAYS);
@@ -348,12 +349,52 @@ public class MainPanel extends fr.endwiz.drp.ui.panel.Panel {
         GridPane.setValignment(help, VPos.BOTTOM);
         GridPane.setHalignment(help, HPos.RIGHT);
         help.setStyle("-fx-font-size: 12px; -fx-text-fill: #3954b7; -fx-underline: true;");
-        help.setTranslateX(-20);
-        help.setTranslateY(-35);
+        help.setTranslateX(-25);
+        help.setTranslateY(-50);
         help.setOnMouseEntered((e) -> panelManager.getLayout().setCursor(Cursor.HAND));
         help.setOnMouseExited((e) -> panelManager.getLayout().setCursor(Cursor.DEFAULT));
         help.setOnMouseClicked((e) -> DiscordRichPresenceManager.OpenURI("https://github.com/Endwiz/Discord-Rich-Presence-Manager"));
 
-        mainPanel.getChildren().addAll(help, close, Id, IdField, Detail, DetailField, State, StateField, bigImage, bigImageField, bigImageText, bigImageTextField, smallImage, smallImageField, smallImageText, smallImageTextField, timer, start);
+        Label copyright = new Label("©Developed by Endwiz");
+        GridPane.setValignment(copyright, VPos.BOTTOM);
+        GridPane.setHalignment(copyright, HPos.RIGHT);
+        GridPane.setHgrow(copyright, Priority.ALWAYS);
+        GridPane.setVgrow(copyright, Priority.ALWAYS);
+        copyright.setStyle("-fx-text-fill: #3954b7; -fx-underline: true;");
+        copyright.setTranslateX(-25);
+        copyright.setTranslateY(-35);
+        copyright.setOnMouseClicked((e) -> DiscordRichPresenceManager.OpenURI("https://github.com/Endwiz/"));
+
+        MaterialDesignIconView moneyIcon = new MaterialDesignIconView(MaterialDesignIcon.CASH_MULTIPLE);
+        moneyIcon.setSize("18px");
+        moneyIcon.setFill(Color.rgb(57, 84, 183));
+        JFXButton money = new JFXButton();
+        GridPane.setValignment(money, VPos.BOTTOM);
+        GridPane.setHalignment(money, HPos.LEFT);
+        GridPane.setHgrow(money, Priority.ALWAYS);
+        GridPane.setVgrow(money, Priority.ALWAYS);
+        money.setMinSize(50.0D, 50.0D);
+        money.setMaxSize(50.0D, 50.0D);
+        money.setTranslateY(-35);
+        money.setStyle("-fx-padding: 0.7em 0.57em; -fx-font-size: 18px; -fx-text-fill: #fff; -fx-border-color: #3954b7;");
+        money.setGraphic(moneyIcon);
+        money.setOnMouseEntered((e) -> panelManager.getLayout().setCursor(Cursor.HAND));
+        money.setOnMouseExited((e) -> panelManager.getLayout().setCursor(Cursor.DEFAULT));
+        money.setOnMouseClicked((e) -> {
+            JFXDialogLayout layout = new JFXDialogLayout();
+            layout.setBody(new Label("I'm sorry but this option is disabled for the\nmoment:/ If you want help me go on paypal: alexlink2005@gmail.com"));
+            JFXAlert alert = new JFXAlert(panelManager.getStage());
+            alert.setOverlayClose(true);
+            alert.setAnimation(JFXAlertAnimation.CENTER_ANIMATION);
+            alert.setContent(layout);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.getDialogPane().setStyle("-fx-background-color: rgba(12,12,12,0.3)");
+            layout.setStyle("-fx-background-color: #333; -fx-border-color: #3954b7");
+            alert.show();
+        });
+
+        mainPanel.getChildren().addAll(help, Id, IdField, Detail, DetailField, State, StateField, bigImage,
+                bigImageField, bigImageText, bigImageTextField, smallImage, smallImageField, smallImageText,
+                smallImageTextField, timer, start, stop, copyright, money);
     }
 }

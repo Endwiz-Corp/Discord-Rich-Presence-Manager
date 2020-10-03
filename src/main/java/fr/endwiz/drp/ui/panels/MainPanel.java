@@ -113,7 +113,7 @@ public class MainPanel extends Panel {
         Id.setTranslateX(15);
         Id.setTranslateY(-30);
 
-        TextField IdField = new TextField("760153908156563487");
+        TextField IdField = new TextField();
         GridPane.setVgrow(IdField, Priority.ALWAYS);
         GridPane.setHgrow(IdField, Priority.ALWAYS);
         GridPane.setValignment(IdField, VPos.TOP);

@@ -10,4 +10,14 @@ public class Constants {
     public static final int HEIGHT = 620;
     public static final boolean RESIZABLE = false;
     public static final StageStyle STAGE_STYLE = StageStyle.DECORATED;
+
+    public static boolean DARK_THEME = true;
+
+    public static boolean isDarkTheme() {
+        return DARK_THEME;
+    }
+
+    public static void setDarkTheme(boolean darkTheme) {
+        DARK_THEME = darkTheme;
+    }
 }

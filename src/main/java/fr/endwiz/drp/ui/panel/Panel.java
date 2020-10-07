@@ -2,6 +2,8 @@ package fr.endwiz.drp.ui.panel;
 
 import fr.endwiz.drp.ui.PanelManager;
 import javafx.animation.FadeTransition;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.util.Duration;

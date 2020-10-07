@@ -14,6 +14,7 @@ public class DiscordRP {
     public static boolean isRunning() {
         return running;
     }
+
     public static void setRunning(boolean run) {
         running = run;
     }

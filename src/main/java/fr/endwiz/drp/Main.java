@@ -13,10 +13,10 @@ public class Main {
         logger = new Logger("DiscordRP Manager Logger");
         try {
             Class.forName("javafx.application.Application");
-            Application.launch(FxApplication.class, args);
+            Application.launch(LaunchApp.class, args);
         } catch (ClassNotFoundException e) {
-            logger.warn("JavaFX not found");
-            JOptionPane.showMessageDialog(null, "Java 8 n'est pas installer ou n'est pas valide veuillez le réinstaller!\n" + e.getMessage() + " not found\nPlease download Java 8 on: https://java.com/fr/download/", "JavaFx Error :sad:", JOptionPane.ERROR_MESSAGE);
+            logger.warn("Invalide JavaFx");
+            JOptionPane.showMessageDialog(null, "Java 8 n'est pas installer ou n'est pas valide veuillez le réinstaller!\nPlease download Java 8 on: https://java.com/fr/download/", "JavaFx Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

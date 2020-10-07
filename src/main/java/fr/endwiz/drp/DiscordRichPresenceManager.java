@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 
 public class DiscordRichPresenceManager {
 
+
     public static void OpenURI(String uri) {
         try {
             Desktop.getDesktop().browse(new URI(uri));
@@ -20,7 +21,7 @@ public class DiscordRichPresenceManager {
     }
 
     public void init(Stage stage) {
-        PanelManager panelManager = new PanelManager(this, stage);
+        PanelManager panelManager = new PanelManager(stage);
         panelManager.init();
         panelManager.showPanel(new MainPanel());
     }

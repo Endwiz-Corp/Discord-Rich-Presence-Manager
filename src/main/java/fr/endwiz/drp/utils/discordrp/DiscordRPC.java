@@ -3,12 +3,13 @@ package fr.endwiz.drp.utils.discordrp;
 public class DiscordRPC {
 
     private static final DiscordRPC INSTANCE = new DiscordRPC();
-    private final DiscordRP discordRP = new DiscordRP();
     public static String ClientID;
+    private final DiscordRP discordRP = new DiscordRP();
 
     public static String getClientID() {
         return ClientID;
     }
+
     public static void setClientID(String clientID) {
         ClientID = clientID;
     }

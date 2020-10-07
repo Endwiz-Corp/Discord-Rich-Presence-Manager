@@ -1,7 +1,6 @@
 package fr.endwiz.drp.ui;
 
 import fr.endwiz.drp.Constants;
-import fr.endwiz.drp.DiscordRichPresenceManager;
 import fr.endwiz.drp.ui.panel.IPanel;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
@@ -13,13 +12,10 @@ import javafx.stage.Stage;
 
 public class PanelManager {
 
-    private final DiscordRichPresenceManager DRPManager;
     private final Stage stage;
-    private GridPane layout;
-    private GridPane centerPanel = new GridPane();
+    private final GridPane centerPanel = new GridPane();
 
-    public PanelManager(DiscordRichPresenceManager DRPManager, Stage stage) {
-        this.DRPManager = DRPManager;
+    public PanelManager(Stage stage) {
         this.stage = stage;
     }
 
@@ -32,17 +28,19 @@ public class PanelManager {
         this.stage.initStyle(Constants.STAGE_STYLE);
         this.stage.show();
 
-        this.layout = new GridPane();
-        this.stage.setScene(new Scene(this.layout));
-        this.layout.setStyle("-fx-background-color: rgb(40,40,40);");
+        GridPane layout = new GridPane();
+        layout.setStyle("-fx-background-color: #282828;");
+        layout.setTranslateY(-30);
+        this.stage.setScene(new Scene(layout));
+
 
         RowConstraints topPanelConstraints = new RowConstraints();
         topPanelConstraints.setValignment(VPos.TOP);
         topPanelConstraints.setMinHeight(25);
         topPanelConstraints.setMaxHeight(25);
-        this.layout.getRowConstraints().addAll(topPanelConstraints, new RowConstraints());
+        layout.getRowConstraints().addAll(topPanelConstraints, new RowConstraints());
 
-        this.layout.add(centerPanel, 0, 1);
+        layout.add(centerPanel, 0, 1);
         GridPane.setVgrow(this.centerPanel, Priority.ALWAYS);
         GridPane.setHgrow(this.centerPanel, Priority.ALWAYS);
     }
@@ -57,9 +55,7 @@ public class PanelManager {
     public Stage getStage() {
         return stage;
     }
-    public DiscordRichPresenceManager getDRPManager() {
-        return DRPManager;
-    }
+
     public GridPane getLayout() {
         return this.centerPanel;
     }

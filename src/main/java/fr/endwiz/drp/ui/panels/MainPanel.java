@@ -10,6 +10,7 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import fr.endwiz.drp.Constants;
 import fr.endwiz.drp.DiscordRichPresenceManager;
 import fr.endwiz.drp.Main;
+import fr.endwiz.drp.json.Json;
 import fr.endwiz.drp.ui.PanelManager;
 import fr.endwiz.drp.ui.panel.Panel;
 import fr.endwiz.drp.utils.discordrp.DiscordRP;
@@ -38,6 +39,7 @@ public class MainPanel extends Panel {
     public static String getID() {
         return ID;
     }
+
     public static void setID(String id) {
         ID = id;
     }
@@ -45,6 +47,7 @@ public class MainPanel extends Panel {
     public static boolean haveTimer() {
         return Timer;
     }
+
     public static void setTimer(Boolean timer) {
         Timer = timer;
     }
@@ -52,6 +55,7 @@ public class MainPanel extends Panel {
     public static String getDetails() {
         return Details;
     }
+
     public static void setDetails(String details) {
         Details = details;
     }
@@ -59,6 +63,7 @@ public class MainPanel extends Panel {
     public static String getState() {
         return State;
     }
+
     public static void setState(String state) {
         State = state;
     }
@@ -66,6 +71,7 @@ public class MainPanel extends Panel {
     public static String getBig() {
         return Big;
     }
+
     public static void setBig(String big) {
         Big = big;
     }
@@ -73,6 +79,7 @@ public class MainPanel extends Panel {
     public static String getBigText() {
         return BigText;
     }
+
     public static void setBigText(String bigText) {
         BigText = bigText;
     }
@@ -80,6 +87,7 @@ public class MainPanel extends Panel {
     public static String getSmall() {
         return Small;
     }
+
     public static void setSmall(String small) {
         Small = small;
     }
@@ -87,6 +95,7 @@ public class MainPanel extends Panel {
     public static String getSmallText() {
         return SmallText;
     }
+
     public static void setSmallText(String smallText) {
         SmallText = smallText;
     }
@@ -256,12 +265,12 @@ public class MainPanel extends Panel {
         GridPane.setVgrow(timer, Priority.ALWAYS);
         GridPane.setHgrow(timer, Priority.ALWAYS);
         GridPane.setValignment(timer, VPos.CENTER);
-        GridPane.setHalignment(timer, HPos.CENTER);
+        GridPane.setHalignment(timer, HPos.LEFT);
         timer.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
         timer.setToggleLineColor(Paint.valueOf("c8872f"));
         timer.setToggleColor(Paint.valueOf("c8652f"));
         timer.setTranslateY(100);
-        timer.setTranslateX(-3);
+        timer.setTranslateX(20);
         timer.setText("Timer");
         timer.setOnMouseClicked(e -> setTimer(!haveTimer()));
 
@@ -278,8 +287,8 @@ public class MainPanel extends Panel {
         start.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #fff; -fx-border-color: #2a46dd");
         start.setOnMouseClicked(e -> {
             setID(IdField.getText());
-            System.out.println("");
-            System.out.println("");
+            System.out.println();
+            System.out.println();
             if (!DiscordRP.isRunning()) {
                 DiscordRPC.getInstance().init(getID());
             } else if (!DiscordRPC.getClientID().equalsIgnoreCase(getID())) {
@@ -288,26 +297,27 @@ public class MainPanel extends Panel {
             } else {
                 Main.logger.log("Discord Rich Presence is already started!");
                 Main.logger.log("Discord Rich Presence is update!");
-                System.out.println("");
+                System.out.println();
             }
             Main.logger.log("Client ID: " + getID());
 
             setDetails(DetailField.getText());
+            setState(StateField.getText());
+            setBig(bigImageField.getText());
+            setBigText(bigImageTextField.getText());
+            setSmall(smallImageField.getText());
+            setSmallText(smallImageTextField.getText());
+
             Main.logger.log("Details: " + getDetails());
 
-            setState(StateField.getText());
             Main.logger.log("State: " + getState());
 
-            setBig(bigImageField.getText());
             Main.logger.log("BigImage: " + getBig());
 
-            setBigText(bigImageTextField.getText());
             Main.logger.log("BigText: " + getBigText());
 
-            setSmall(smallImageField.getText());
             Main.logger.log("SmallImage: " + getSmall());
 
-            setSmallText(smallImageTextField.getText());
             Main.logger.log("SmallText: " + getSmallText());
 
             Main.logger.log("Timer: " + haveTimer());
@@ -386,7 +396,7 @@ public class MainPanel extends Panel {
             alert.setContent(layout);
             alert.initModality(Modality.APPLICATION_MODAL);
             alert.getDialogPane().setStyle("-fx-background-color: rgba(12,12,12,0.3)");
-            if(Constants.isDarkTheme()){
+            if (Constants.isDarkTheme()) {
                 layout.setStyle("-fx-background-color: #333; -fx-border-color: #3954b7");
             } else {
                 layout.setStyle("-fx-background-color: #d6d6d6; -fx-border-color: #3954b7");
@@ -403,36 +413,82 @@ public class MainPanel extends Panel {
         themeIcon.setFill(Color.rgb(255, 255, 255));
         themeIcon.setTranslateY(-17);
 
+        JFXButton save = new JFXButton();
+        GridPane.setVgrow(save, Priority.ALWAYS);
+        GridPane.setHgrow(save, Priority.ALWAYS);
+        GridPane.setValignment(save, VPos.CENTER);
+        GridPane.setHalignment(save, HPos.RIGHT);
+        save.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #dbdbdb; -fx-border-color: #2a46dd");
+        save.setText("Save");
+        save.setTranslateY(100);
+        save.setTranslateX(-120);
+        save.setOnMouseClicked(e -> {
+            setID(IdField.getText());
+            setDetails(DetailField.getText());
+            setState(StateField.getText());
+            setBig(bigImageField.getText());
+            setBigText(bigImageTextField.getText());
+            setSmall(smallImageField.getText());
+            setSmallText(smallImageTextField.getText());
+
+            Json.create("save");
+        });
+
+        JFXButton load = new JFXButton();
+        GridPane.setVgrow(load, Priority.ALWAYS);
+        GridPane.setHgrow(load, Priority.ALWAYS);
+        GridPane.setValignment(load, VPos.CENTER);
+        GridPane.setHalignment(load, HPos.RIGHT);
+        load.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #dbdbdb; -fx-border-color: #2a46dd");
+        load.setText("Load");
+        load.setTranslateY(100);
+        load.setTranslateX(-45);
+        load.setOnMouseClicked(e -> {
+            Json.read();
+
+            IdField.setText(getID());
+            DetailField.setText(getDetails());
+            StateField.setText(getState());
+            bigImageField.setText(getBig());
+            bigImageTextField.setText(getBigText());
+            smallImageField.setText(getSmall());
+            smallImageTextField.setText(getSmallText());
+
+            timer.setSelected(haveTimer());
+        });
+
         JFXToggleButton theme = new JFXToggleButton();
         GridPane.setValignment(theme, VPos.BOTTOM);
         GridPane.setHalignment(theme, HPos.LEFT);
         GridPane.setHgrow(theme, Priority.ALWAYS);
         GridPane.setVgrow(theme, Priority.ALWAYS);
         theme.setTranslateX(10);
-        theme.setToggleLineColor(Paint.valueOf("32abdb"));
-        theme.setToggleColor(Paint.valueOf("3276db"));
+        theme.setToggleColor(Color.rgb(4, 164, 227));
+        theme.setToggleLineColor(Color.rgb(58, 212, 227));
         theme.setOnMouseClicked(e -> {
             Constants.setDarkTheme(!Constants.DARK_THEME);
-            if(Constants.isDarkTheme()){
+            if (Constants.isDarkTheme()) {
                 themeIcon.setFill(Color.rgb(255, 255, 255));
                 start.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #dbdbdb; -fx-border-color: #2a46dd");
-                stop.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #dbdbdb; -fx-border-color: #2a46dd");
+                stop.setStyle(start.getStyle());
+                save.setStyle(start.getStyle());
+                load.setStyle(start.getStyle());
 
                 Id.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                Detail.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                State.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                bigImage.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                bigImageText.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                smallImage.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
-                smallImageText.setStyle("-fx-font-size: 24px; -fx-text-fill: #dbdbdb;");
+                Detail.setStyle(Id.getStyle());
+                State.setStyle(Id.getStyle());
+                bigImage.setStyle(Id.getStyle());
+                bigImageText.setStyle(Id.getStyle());
+                smallImage.setStyle(Id.getStyle());
+                smallImageText.setStyle(Id.getStyle());
 
                 IdField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                DetailField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                StateField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                bigImageField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                bigImageTextField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                smallImageField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
-                smallImageTextField.setStyle("-fx-background-color: #fff; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #393939;");
+                DetailField.setStyle(IdField.getStyle());
+                StateField.setStyle(IdField.getStyle());
+                bigImageField.setStyle(IdField.getStyle());
+                bigImageTextField.setStyle(IdField.getStyle());
+                smallImageField.setStyle(IdField.getStyle());
+                smallImageTextField.setStyle(IdField.getStyle());
 
                 timer.setToggleLineColor(Paint.valueOf("c8872f"));
                 timer.setToggleColor(Paint.valueOf("c8652f"));
@@ -441,26 +497,28 @@ public class MainPanel extends Panel {
             } else {
                 themeIcon.setFill(Color.rgb(49, 49, 49));
                 start.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #343434; -fx-border-color: #2a46dd");
-                stop.setStyle("-fx-padding: 0.7em 0.57em; -fx-text-fill: #343434; -fx-border-color: #2a46dd");
+                stop.setStyle(start.getStyle());
+                save.setStyle(start.getStyle());
+                load.setStyle(start.getStyle());
 
                 Id.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                Detail.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                State.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                bigImage.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                bigImageText.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                smallImage.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
-                smallImageText.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
+                Detail.setStyle(Id.getStyle());
+                State.setStyle(Id.getStyle());
+                bigImage.setStyle(Id.getStyle());
+                bigImageText.setStyle(Id.getStyle());
+                smallImage.setStyle(Id.getStyle());
+                smallImageText.setStyle(Id.getStyle());
 
                 IdField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                DetailField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                StateField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                bigImageField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                bigImageTextField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                smallImageField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
-                smallImageTextField.setStyle("-fx-background-color: #393939; -fx-opacity: 40%; -fx-font-size: 16px; -fx-text-fill: #fff;");
+                DetailField.setStyle(IdField.getStyle());
+                StateField.setStyle(IdField.getStyle());
+                bigImageField.setStyle(IdField.getStyle());
+                bigImageTextField.setStyle(IdField.getStyle());
+                smallImageField.setStyle(IdField.getStyle());
+                smallImageTextField.setStyle(IdField.getStyle());
 
-                timer.setToggleLineColor(Paint.valueOf("32abdb"));
-                timer.setToggleColor(Paint.valueOf("3276db"));
+                timer.setToggleColor(Color.rgb(4, 164, 227));
+                timer.setToggleLineColor(Color.rgb(58, 212, 227));
                 timer.setStyle("-fx-font-size: 24px; -fx-text-fill: #626262;");
                 this.layout.setStyle("-fx-background-color: #d6d6d6");
             }
@@ -468,6 +526,6 @@ public class MainPanel extends Panel {
 
         mainPanel.getChildren().addAll(help, Id, IdField, Detail, DetailField, State, StateField, bigImage,
                 bigImageField, bigImageText, bigImageTextField, smallImage, smallImageField, smallImageText,
-                smallImageTextField, timer, start, stop, copyright, money, theme, themeIcon);
+                smallImageTextField, timer, start, stop, copyright, money, theme, themeIcon, save, load);
     }
 }

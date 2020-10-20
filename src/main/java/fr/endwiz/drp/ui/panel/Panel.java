@@ -2,15 +2,13 @@ package fr.endwiz.drp.ui.panel;
 
 import fr.endwiz.drp.ui.PanelManager;
 import javafx.animation.FadeTransition;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.util.Duration;
 
 public class Panel implements IPanel {
 
-    protected GridPane layout = new GridPane();
+    protected final GridPane layout = new GridPane();
     protected PanelManager panelManager;
 
     @Override
@@ -33,4 +31,6 @@ public class Panel implements IPanel {
         transition.setAutoReverse(true);
         transition.play();
     }
+
+
 }

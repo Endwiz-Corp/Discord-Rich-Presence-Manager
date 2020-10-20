@@ -11,7 +11,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 public class PanelManager {
-
     private final Stage stage;
     private final GridPane centerPanel = new GridPane();
 
@@ -20,6 +19,8 @@ public class PanelManager {
     }
 
     public void init() {
+
+        // Initialize the window
         this.stage.getIcons().add(new Image(Constants.WINDOW_ICON));
         this.stage.setTitle(Constants.WINDOW_NAME);
         this.stage.setWidth(Constants.WIDTH);
@@ -55,7 +56,6 @@ public class PanelManager {
     public Stage getStage() {
         return stage;
     }
-
     public GridPane getLayout() {
         return this.centerPanel;
     }

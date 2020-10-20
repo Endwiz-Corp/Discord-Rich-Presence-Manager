@@ -23,12 +23,9 @@ public class DiscordRP {
     public void start(String ClientId) {
         setRunning(true);
         this.created = System.currentTimeMillis();
-        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(new ReadyCallback() {
-            @Override
-            public void apply(DiscordUser discordUser) {
-                Main.logger.log("DiscordRP is start!");
-                Main.logger.log(discordUser.username + "#" + discordUser.discriminator);
-            }
+        DiscordEventHandlers handlers = new DiscordEventHandlers.Builder().setReadyEventHandler(discordUser -> {
+            Main.logger.log("DiscordRP is started!");
+            Main.logger.log(discordUser.username + "#" + discordUser.discriminator);
         }).build();
 
         DiscordRPC.discordInitialize(ClientId, handlers, true);

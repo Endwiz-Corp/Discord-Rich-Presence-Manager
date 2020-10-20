@@ -11,6 +11,14 @@ import java.net.URISyntaxException;
 
 public class DiscordRichPresenceManager {
 
+    public DiscordRichPresenceManager() {
+    }
+
+    public void init(Stage stage) {
+        PanelManager panelManager = new PanelManager(stage);
+        panelManager.init();
+        panelManager.showPanel(new MainPanel());
+    }
 
     public static void OpenURI(String uri) {
         try {
@@ -18,11 +26,5 @@ public class DiscordRichPresenceManager {
         } catch (IOException | URISyntaxException e) {
             Main.logger.warn(e.getMessage());
         }
-    }
-
-    public void init(Stage stage) {
-        PanelManager panelManager = new PanelManager(stage);
-        panelManager.init();
-        panelManager.showPanel(new MainPanel());
     }
 }
